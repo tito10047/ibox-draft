@@ -31,7 +31,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for complaint in parent.getRows() %}
+                {% for complaint in pagination %}
                     <tr>
                         <td>{{ complaint.id }}</td>
                         <td>
