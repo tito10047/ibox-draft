@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Complaint #{{ complaint.id }}{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <div class="row mb-3">
+            <div class="col">
+                <a href="{{ path('app_index') }}" class="btn btn-secondary">
+                    <twig:ux:icon name="mdi:arrow-left"/>
+                    Back to list
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <twig:ComplaintEdit :complaintId="complaintId" />
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,110 @@
+/* ============================================================
+   IBOX PANEL KOMPONENT
+   Kartový panel s hlavičkou, filtrovou lištou, obsahom a pätou.
+   Používa CSS nesting.
+   ============================================================ */
+
+.ibox {
+    background-color: var(--app-surface-bg);
+    border: 1px solid var(--app-surface-border);
+    border-radius: var(--app-radius-md);
+    box-shadow: var(--app-shadow-card);
+    overflow: hidden;
+    transition:
+        background-color var(--app-transition-base),
+        border-color var(--app-transition-base),
+        box-shadow var(--app-transition-base);
+
+    /* --- Hlavička --- */
+    & .ibox-title {
+        background-color: var(--app-surface-bg-secondary);
+        min-height: var(--app-ibox-title-height);
+        border-bottom: 1px solid var(--app-surface-border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-inline: var(--app-space-4);
+        gap: var(--app-space-2);
+        transition:
+            background-color var(--app-transition-base),
+            border-color var(--app-transition-base);
+
+        & h5 {
+            color: var(--app-text-heading);
+            font-weight: 600;
+            margin: 0;
+            text-wrap: balance;
+        }
+
+        /* --- Nástroje v hlavičke --- */
+        & .ibox-tools {
+            display: flex;
+            align-items: center;
+            gap: var(--app-space-2);
+            flex-shrink: 0;
+
+            & a {
+                color: var(--app-text-muted);
+                transition: color var(--app-transition-fast);
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+
+                &:hover {
+                    color: var(--app-color-primary);
+                }
+
+                /* Stav aktívneho filtra — nahrádza style="color:#1ab394;" */
+                &.selected {
+                    color: var(--app-color-primary);
+                }
+            }
+        }
+    }
+
+    /* --- Filtrová lišta — nahrádza style="background-color: #98cec3;" --- */
+    & .ibox-filter-bar {
+        background-color: var(--app-filter-bar-bg);
+        color: var(--app-filter-bar-text);
+        padding: var(--app-space-2) var(--app-space-3);
+        transition: background-color var(--app-transition-base);
+
+        & .btn-success {
+            background-color: var(--app-color-primary);
+            border-color: var(--app-color-primary);
+        }
+
+        & .btn-success:hover {
+            background-color: var(--app-color-primary-hover);
+            border-color: var(--app-color-primary-hover);
+        }
+
+        & .form-control,
+        & .form-select {
+            background-color: var(--app-surface-bg);
+            color: var(--app-text-primary);
+            border-color: var(--app-surface-border);
+        }
+    }
+
+    /* --- Obsah --- */
+    & .ibox-content {
+        padding: var(--app-space-3);
+        background-color: var(--app-surface-bg);
+        transition: background-color var(--app-transition-base);
+    }
+
+    /* --- Päta --- */
+    & .ibox-footer {
+        border-top: 1px solid var(--app-surface-border);
+        padding: var(--app-space-2) var(--app-space-4);
+        background-color: var(--app-surface-bg-secondary);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--app-space-2);
+        transition:
+            background-color var(--app-transition-base),
+            border-color var(--app-transition-base);
+    }
+}

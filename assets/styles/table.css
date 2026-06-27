@@ -1,0 +1,42 @@
+/* ============================================================
+   TABLE — live tabuľka a zoradenie stĺpcov
+   ============================================================ */
+
+.live-table {
+    container-type: inline-size;
+}
+
+/* Šípka zoradenia v hlavičke stĺpca */
+.column-order {
+    color: var(--app-color-primary);
+    font-size: var(--app-space-3);
+    vertical-align: middle;
+    margin-inline-start: var(--app-space-1);
+}
+
+/* Linky v hlavičke tabuľky (sortovateľné stĺpce) */
+.table th a {
+    color: var(--app-text-heading);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color var(--app-transition-fast);
+
+    &:hover {
+        color: var(--app-color-primary);
+        text-decoration: none;
+    }
+}
+
+/* Záhlavie tabuľky */
+.table thead th {
+    font-size: var(--app-font-size-sm, 0.875rem);
+    font-weight: 600;
+    color: var(--app-text-heading);
+    border-bottom-width: 2px;
+    border-bottom-color: color-mix(in srgb, var(--app-color-primary) 40%, var(--app-surface-border));
+}
+
+/* Jemné prúžkovanie v tmavej téme */
+[data-bs-theme="dark"] .table-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-accent-bg: color-mix(in srgb, var(--app-color-primary) 5%, transparent);
+}

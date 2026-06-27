@@ -1,0 +1,113 @@
+/* ============================================================
+   DESIGN TOKENS — jediný zdroj všetkých hodnôt
+   Svetlá téma: :root
+   Tmavá téma: @media + [data-bs-theme="dark"]
+   ============================================================ */
+
+:root {
+    /* --- Primárna farba (teal-green) --- */
+    --app-color-primary:        #1ab394;
+    --app-color-primary-rgb:    26, 179, 148;
+    --app-color-primary-hover:  color-mix(in srgb, #1ab394 80%, black);
+    --app-color-primary-subtle: color-mix(in srgb, #1ab394 12%, white);
+
+    /* --- Stránka & povrchy --- */
+    --app-page-bg:              #f3f3f4;
+    --app-surface-bg:           #ffffff;
+    --app-surface-bg-secondary: #f8f9fa;
+    --app-surface-border:       #e7eaec;
+
+    /* --- Text --- */
+    --app-text-primary:         #212529;
+    --app-text-muted:           #6c757d;
+    --app-text-heading:         #212529;
+    --app-link-color:           #1ab394;
+
+    /* --- Filter bar (ibox-filter-bar) --- */
+    --app-filter-bar-bg:        #98cec3;
+    --app-filter-bar-text:      #1a5248;
+
+    /* --- Overlay (loading preloader) --- */
+    --app-overlay-bg:           color-mix(in srgb, white 70%, transparent);
+
+    /* --- Tiene --- */
+    --app-shadow-sm:            0 1px 3px rgba(0, 0, 0, 0.08);
+    --app-shadow-card:          0 1px 4px rgba(0, 0, 0, 0.10);
+    --app-shadow-md:            0 2px 8px rgba(0, 0, 0, 0.12);
+
+    /* --- Priestor --- */
+    --app-space-1:   0.25rem;
+    --app-space-2:   0.5rem;
+    --app-space-3:   0.75rem;
+    --app-space-4:   1rem;
+    --app-space-6:   1.5rem;
+
+    /* --- Polomery --- */
+    --app-radius-sm:   0.25rem;
+    --app-radius-md:   0.375rem;
+    --app-radius-lg:   0.5rem;
+    --app-radius-pill: 9999px;
+
+    /* --- Prechody --- */
+    --app-transition-fast: 120ms ease-in-out;
+    --app-transition-base: 200ms ease-in-out;
+
+    /* --- Z-index škála --- */
+    --app-z-overlay: 1000;
+    --app-z-spinner: 2000;
+
+    /* --- Veľkosti komponentov --- */
+    --app-avatar-size:          3.125rem;
+    --app-avatar-size-lg:       3.75rem;
+    --app-ibox-title-height:    3rem;
+
+    /* --- Spinner (SpinKit wave) --- */
+    --app-spinner-wave-width:   clamp(28px, 6vw, 40px);
+    --app-spinner-wave-height:  clamp(30px, 6vw, 44px);
+    --app-spinner-rect-width:   clamp(5px, 1vw, 8px);
+
+    /* --- Spinner (SpinKit double-bounce) --- */
+    --app-double-bounce-size:   clamp(36px, 8vw, 52px);
+}
+
+/* ============================================================
+   TMAVÁ TÉMA
+   Dual approach: CSS-only fallback (prefers-color-scheme)
+   + Bootstrap JS hook ([data-bs-theme="dark"])
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-bs-theme="light"]) {
+        --app-page-bg:              #0f1117;
+        --app-surface-bg:           #1a1d2e;
+        --app-surface-bg-secondary: #22263a;
+        --app-surface-border:       #2d3148;
+        --app-text-primary:         #dee2e6;
+        --app-text-muted:           #8d97a5;
+        --app-text-heading:         #f0f2f5;
+        --app-link-color:           color-mix(in srgb, #1ab394 75%, white);
+        --app-filter-bar-bg:        color-mix(in srgb, #1ab394 25%, #1a1d2e);
+        --app-filter-bar-text:      color-mix(in srgb, #1ab394 60%, white);
+        --app-overlay-bg:           color-mix(in srgb, #1a1d2e 75%, transparent);
+        --app-shadow-sm:            0 1px 3px rgba(0, 0, 0, 0.35);
+        --app-shadow-card:          0 1px 6px rgba(0, 0, 0, 0.40);
+        --app-shadow-md:            0 2px 8px rgba(0, 0, 0, 0.50);
+    }
+}
+
+[data-bs-theme="dark"] {
+    --app-page-bg:              #0f1117;
+    --app-surface-bg:           #1a1d2e;
+    --app-surface-bg-secondary: #22263a;
+    --app-surface-border:       #2d3148;
+    --app-text-primary:         #dee2e6;
+    --app-text-muted:           #8d97a5;
+    --app-text-heading:         #f0f2f5;
+    --app-link-color:           color-mix(in srgb, #1ab394 75%, white);
+    --app-filter-bar-bg:        color-mix(in srgb, #1ab394 25%, #1a1d2e);
+    --app-filter-bar-text:      color-mix(in srgb, #1ab394 60%, white);
+    --app-overlay-bg:           color-mix(in srgb, #1a1d2e 75%, transparent);
+    --app-shadow-sm:            0 1px 3px rgba(0, 0, 0, 0.35);
+    --app-shadow-card:          0 1px 6px rgba(0, 0, 0, 0.40);
+    --app-shadow-md:            0 2px 8px rgba(0, 0, 0, 0.50);
+}

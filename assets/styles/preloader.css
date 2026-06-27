@@ -1,0 +1,37 @@
+/* ============================================================
+   PRELOADER OVERLAY
+   Migrácia z pôvodného app.css — všetky hodnoty cez tokeny.
+   Overlay sa zobrazí počas [busy] stavu Live komponentov.
+   ============================================================ */
+
+[busy] .preloader-wrapper {
+    position: relative;
+}
+
+[busy] .preloader-wrapper > .sk-spinner {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    z-index: var(--app-z-spinner);
+}
+
+/* Každý typ spinnera potrebuje správny display */
+[busy] .preloader-wrapper > .sk-spinner-wave         { display: flex; }
+[busy] .preloader-wrapper > .sk-spinner-double-bounce { display: block; }
+
+[busy] td.preloader-wrapper > .sk-spinner {
+    top: var(--app-space-1);
+}
+
+[busy] .preloader-wrapper > .sk-spinner + * .sk-spinner {
+    display: none;
+}
+
+[busy] .preloader-wrapper::after {
+    content: '';
+    background-color: var(--app-overlay-bg);
+    position: absolute;
+    inset: 0;
+    z-index: var(--app-z-overlay);
+}

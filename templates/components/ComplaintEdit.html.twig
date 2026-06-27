@@ -1,0 +1,35 @@
+<div {{ attributes }}>
+    <twig:IBoxTable
+        :title="'Edit Complaint'"
+        :editable="true"
+        :tools="null"
+        :form="form"
+        :editing="editing"
+    >
+        {% if editing %}
+            {{ form_rest(form) }}
+        {% else %}
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img src="{{ complaint.imageUrl }}" alt="Complaint image" class="img-fluid rounded mb-3" style="max-height: 200px;">
+                    <div>
+                        <span class="badge badge-info">{{ complaint.type.value }}</span>
+                        <p class="text-muted mt-2">{{ complaint.date|date('d.m.Y H:i') }}</p>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    {% if editing %}
+                        {{ form_row(form.title) }}
+                        {{ form_row(form.type) }}
+                        {{ form_row(form.description) }}
+                    {% else %}
+                        <h3>{{ complaint.title }}</h3>
+                        <p><strong>Type:</strong> {{ complaint.type.value }}</p>
+                        <p><strong>Description:</strong></p>
+                        <p>{{ complaint.description }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </twig:IBoxTable>
+</div>

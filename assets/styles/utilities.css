@@ -1,0 +1,26 @@
+/* ============================================================
+   UTILITIES — jednoúčelové pomocné triedy
+   Nahradzujú inline štýly v šablónach.
+   ============================================================ */
+
+/* Avatar obrázok (nahrádza style="width:50px;height:50px;border-radius:50%") */
+.app-avatar-img {
+    width: var(--app-avatar-size);
+    height: var(--app-avatar-size);
+    border-radius: var(--app-radius-pill);
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.app-avatar-img--lg {
+    width: var(--app-avatar-size-lg);
+    height: var(--app-avatar-size-lg);
+}
+
+/* Flex kontajner s opačným poradím tlačidiel (nahrádza inline display:flex;flex-direction:row-reverse) */
+.app-btn-row-reverse {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: var(--app-space-2);
+}

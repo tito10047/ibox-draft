@@ -1,0 +1,60 @@
+/* ============================================================
+   BOOTSTRAP BRIDGE
+   Prekladá --app-* tokeny do --bs-* premenných.
+   Bootstrap komponenty tak automaticky reagujú na tému.
+   ============================================================ */
+
+:root {
+    /* Primárna farba */
+    --bs-primary:               var(--app-color-primary);
+    --bs-primary-rgb:           var(--app-color-primary-rgb);
+    --bs-primary-text-emphasis: var(--app-color-primary);
+    --bs-primary-bg-subtle:     var(--app-color-primary-subtle);
+    --bs-link-color:            var(--app-link-color);
+    --bs-link-hover-color:      var(--app-color-primary-hover);
+
+    /* Telo stránky */
+    --bs-body-bg:               var(--app-page-bg);
+    --bs-body-color:            var(--app-text-primary);
+    --bs-heading-color:         var(--app-text-heading);
+    --bs-secondary-color:       var(--app-text-muted);
+    --bs-border-color:          var(--app-surface-border);
+    --bs-secondary-bg:          var(--app-surface-bg-secondary);
+    --bs-tertiary-bg:           var(--app-surface-bg-secondary);
+
+    /* Karty */
+    --bs-card-bg:               var(--app-surface-bg);
+    --bs-card-border-color:     var(--app-surface-border);
+    --bs-card-box-shadow:       var(--app-shadow-card);
+
+    /* Tabuľky */
+    --bs-table-bg:              var(--app-surface-bg);
+    --bs-table-border-color:    var(--app-surface-border);
+
+    /* Polomery */
+    --bs-border-radius:         var(--app-radius-md);
+    --bs-border-radius-sm:      var(--app-radius-sm);
+    --bs-border-radius-lg:      var(--app-radius-lg);
+
+    /* Tiene */
+    --bs-box-shadow:            var(--app-shadow-md);
+    --bs-box-shadow-sm:         var(--app-shadow-sm);
+}
+
+/* Bootstrap 4 trieda .badge-info používaná v šablónach */
+.badge.badge-info {
+    background-color: var(--bs-info);
+    color: white;
+}
+
+/* btn-primary override na primárnu teal farbu */
+.btn-primary {
+    --bs-btn-bg:           var(--app-color-primary);
+    --bs-btn-border-color: var(--app-color-primary);
+    --bs-btn-hover-bg:     var(--app-color-primary-hover);
+    --bs-btn-hover-border-color: var(--app-color-primary-hover);
+    --bs-btn-active-bg:    var(--app-color-primary-hover);
+    --bs-btn-color:        #fff;
+    --bs-btn-hover-color:  #fff;
+    --bs-btn-active-color: #fff;
+}

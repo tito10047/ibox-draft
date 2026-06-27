@@ -1,0 +1,83 @@
+{% if pageCount > 1 %}
+    <nav>
+        {% set classAlign = (align is not defined) ? '' : align == 'center' ? ' justify-content-center' : (align == 'right' ? ' justify-content-end' : '') %}
+        {% set classSize = (size is not defined) ? '' : size == 'large' ? ' pagination-lg' : (size == 'small' ? ' pagination-sm' : '') %}
+        <ul class="pagination{{ classAlign }}{{ classSize }} m-0">
+
+            {% if previous is defined %}
+                <li class="page-item">
+                    <button class="page-link text-nowrap" rel="prev" {{ live_action('paginate', {'page': previous }) }}>
+                        &laquo;&nbsp;{{ 'label_previous'|trans({}, 'KnpPaginatorBundle') }}</button>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link text-nowrap">&laquo;&nbsp;{{ 'label_previous'|trans({}, 'KnpPaginatorBundle') }}</span>
+                </li>
+            {% endif %}
+
+            {% if startPage > 1 %}
+                <li class="page-item">
+                    <button class="page-link" {{ live_action('paginate', {'page': 1 }) }}>1</button>
+                </li>
+                {% if startPage == 3 %}
+                    <li class="page-item">
+                        <button class="page-link" {{ live_action('paginate', {'page': 2 }) }}>2</button>
+                    </li>
+                {% elseif startPage != 2 %}
+                    <li class="page-item disabled">
+                        <span class="page-link">&hellip;</span>
+                    </li>
+                {% endif %}
+            {% endif %}
+
+            {% for page in pagesInRange %}
+                {% if page != current %}
+                    <li class="page-item">
+                        <button class="page-link" {{ live_action('paginate', {'page': page }) }}>{{ page }}</button>
+                    </li>
+                {% else %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ page }}</span>
+                    </li>
+                {% endif %}
+
+            {% endfor %}
+
+            {% if pageCount > endPage %}
+                {% if pageCount > (endPage + 1) %}
+                    {% if pageCount > (endPage + 2) %}
+                        <li class="page-item disabled">
+                            <span class="page-link">&hellip;</span>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <button class="page-link" {{ live_action('paginate', {'page': (pageCount - 1) }) }}>{{ pageCount - 1 }}</button>
+                        </li>
+                    {% endif %}
+                {% endif %}
+                {% if pageCount==100 %}
+                    <li class="page-item">
+                        <button class="page-link  text-nowrap" {{ live_action('paginate', {'page': -99 }) }}>{{ last-1 }}+</button>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <button class="page-link" {{ live_action('paginate', {'page': pageCount }) }}>{{ pageCount }}</button>
+                    </li>
+                {% endif %}
+            {% endif %}
+
+            {% if next is defined %}
+                <li class="page-item">
+                    <button class="page-link text-nowrap"
+                            rel="next" {{ live_action('paginate', {'page': next }) }}>{{ 'label_next'|trans({}, 'KnpPaginatorBundle') }}
+                        &nbsp;&raquo;
+                    </button>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link text-nowrap">{{ 'label_next'|trans({}, 'KnpPaginatorBundle') }}&nbsp;&raquo;</span>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}

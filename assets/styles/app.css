@@ -1,3 +1,15 @@
-body {
-    background-color: skyblue;
-}
+/* ============================================================
+   APP.CSS — orchestrátor
+   Bootstrap je unlayered → naše súbory TIEŽ nesmú byť v @layer,
+   inak Bootstrap vždy vyhráva (unlayered > layered v kaskáde).
+   Poradie importov = poradie priority (neskorší víťazí).
+   ============================================================ */
+
+@import "./tokens.css";
+@import "./bootstrap-bridge.css";
+@import "./layout.css";
+@import "./ibox.css";
+@import "./table.css";
+@import "./spinners.css";
+@import "./preloader.css";
+@import "./utilities.css";

@@ -1,0 +1,130 @@
+<div{{ attributes.defaults({class:"ibox"}) }}>
+    {% if title is not null %}
+        <div class="ibox-title">
+            <h5>{% block title %}{{ title }}{% endblock %}</h5>
+            <div class="ibox-tools">
+                {% block tools_block %}
+
+                {% endblock %}
+                {% if tools is not null and not this.hidden %}
+                    <a class="{{ tools ? "selected" : "" }}" href="javascript:void(0);" {{ live_action('toggleTools') }}>
+                        <twig:ux:icon name="mdi:filter"/>
+                    </a>
+                {% endif %}
+                {% if collapsable %}
+                    <a class="collapse-link" href="javascript:void(0);" {{ attributes.only("id") }} {{ live_action('toggleComponent') }}>
+                        <twig:ux:icon name="down" :class="'icon down ' ~ (not this.hidden?'d-none':'')"/>
+                        <twig:ux:icon name="up" :class="'icon down ' ~ (this.hidden?'d-none':'')"/>
+                    </a>
+                {% endif %}
+                {#                {% if history %} #}
+                {#                    <a href="#"> #}
+                {#                        <i class="fa fa-book"></i> #}
+                {#                    </a> #}
+                {#                {% endif %} #}
+                {% if editable and not this.hidden %}
+                    {% if editing==false %}
+                        <a href="javascript:void(0);" {{ live_action('toggleEdit') }}">
+                        <twig:ux:icon name="mingcute:edit-line"/>
+                        </a>
+                    {% else %}
+                        {% if not hideCancel %}
+                            <a href="javascript:void(0);" {{ live_action('toggleEdit') }}>
+                                <twig:ux:icon name="material-symbols:cancel-outline"/>
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+    {% if tools %}
+        <div class="ibox-filter-bar">
+            <div class="row p-1">
+                {% block tools %}
+                    <div class="{% block tools_class %}col-sm-4 col-md-3 col-lg-2{% endblock %}">
+                        {% block seach %}
+                            <span class="input-group">
+                            <input type="search" data-model="norender|query"
+                                   class="form-control form-control-sm" {{ live_action('search',[],{'debounce':'100'},"keydown.enter") }}>
+                            <span class="input-group-append">
+                                {% block search_button %}
+                                    <button type="button" {{ live_action('search',[],{'debounce':'100'}) }}
+                                        class="btn btn-success btn-sm ">Search</button>
+                                {% endblock %}
+                                {% if query is not null %}
+                                    <button type="button" {{ live_action('resetSearch',[],{'debounce':'100'}) }}
+                                        class="btn btn-warning btn-sm">Clear</button>
+                                {% endif %}
+                            </span>
+                        </span>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    {% endif %}
+    <div class="{{ wrapperClass }}" style="{% if this.hidden %}display:none;{% endif %}">
+        {% if not this.hidden %}
+            {% if form is not null %}
+                {{ form_start(form, {
+                    attr: {
+                        'data-action': 'live#action:prevent',
+                        'data-live-action-param': 'save',
+                        'class':'preloader-wrapper'
+                    }
+                }) }}
+                {% if editing==false %}
+                    <div class="d-none">{{ form_rest(form) }}</div>
+                {% endif %}
+            {% endif %}
+            <twig:Spinner type="wave"/>
+            {% include "_partials/flashes.html.twig" with {row:false} %}
+            {% block content %}{% endblock %}
+            {% block footer %}
+                {% if not hideFooter or pagination is not null or editing %}
+                    <div class="{{ footerClass }}">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-inline-flex">
+                                {% block footer_left %}
+                                    {% if pagination is not null %}
+                                        {{ knp_pagination_render(pagination, '_partials/pagination.html.twig') }}
+                                        {% if pagination.totalItemCount > 10 %}
+                                            <select class="form-control form-control-sm mx-1" data-model="perPage">
+                                                {% for page in pages %}
+                                                    <option {% if page == perPage %}selected{% endif %}>{{ page }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endblock %}
+                            </div>
+                            <div class="right-footer">
+                                {% block footer_right %}
+                                    {% block menu %}{% endblock %}
+                                    {% if editable and editing==true %}
+                                        <span class="app-btn-row-reverse">
+                                    <button type="submit" class="btn btn-sm btn-primary">
+                                        <twig:ux:icon name="mingcute:edit-line"/>
+                                        Save
+                                    </button>
+                                        {% if not hideCancel %}
+                                            <button type="button" class="btn btn-sm btn-danger" {{ live_action('toggleEdit') }}>
+                                                <twig:ux:icon name="material-symbols:cancel-outline"/>
+                                                Cancel
+                                            </button>
+                                        {% endif %}
+                                    </span>
+                                    {% endif %}
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endblock %}
+            {% if form is not null %}
+                {{ form_end(form) }}
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
